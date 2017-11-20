@@ -1,0 +1,12 @@
+{
+    "manifest_version": 2,
+    "name": "RedditCensor",
+    "version": "1.0",
+    "content_scripts": [
+        {
+            "matches": ["*://www.reddit.com/*"],
+            "js": ["jquery-3.2.1.min.js", "censor.js"]
+        }
+    ],
+    "permissions": ["tabs", "*://www.reddit.com/*"]
+}
