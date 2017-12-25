@@ -1,22 +1,24 @@
-let search_strings = ["pickle"];
-let classes_to_censor = ["title", "md"];
+(function() {
+  const searchStrings = ['diferent'];
+  const classesToCensor = ['title', 'md'];
 
-$(document).ready(function() {
-    censorContent(classes_to_censor);
-});
+  const processClass = (className) => {
+    const elements = document.getElementsByClassName(className);
+    Array.prototype.forEach.call(elements, element => { processResult(element); });
+  };
 
-function censorContent(classes) {
-    for (let c of classes) {
-        let results = document.getElementsByClassName(c);
-        for (let result of results) {
-            for (let search_string of search_strings) {
-                if (
-                    result.innerText.toLowerCase().indexOf(search_string) >= 0
-                ) {
-                    result.innerHTML = "Hurr durr blah blah blah";
-                    break;
-                }
-            }
-        }
+  const processResult = (element) => {
+    searchStrings.forEach(string => {
+      if (element.innerText.toLowerCase().includes(string)) {
+        element.innerText = '-censored-';
+      }
+    });
+  };
+
+  const censorship = setInterval(() => {
+    if (document.readyState === 'complete') {
+      classesToCensor.forEach(classTS => { processClass(classTS); });
+      clearInterval(censorship);
     }
-}
+  }, 333);
+})();
