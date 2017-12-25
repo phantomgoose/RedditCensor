@@ -1,5 +1,5 @@
 (function() {
-  const searchStrings = ['diferent'];
+  const searchStrings = ['trump'];
   const classesToCensor = ['title', 'md'];
 
   const processClass = (className) => {
